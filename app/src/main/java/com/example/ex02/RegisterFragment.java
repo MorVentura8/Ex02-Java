@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -72,10 +73,19 @@ public class RegisterFragment extends Fragment {
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 if (validRegister(view)) {
                     registerUser(view);
-                }
+                    Navigation.findNavController(view).navigate(R.id.action_registerFragment_to_loginFragment);
+                    Toast.makeText(requireContext(), "Registered successfully!", Toast.LENGTH_SHORT).show();
 
+                }
+                else
+                {
+                    //TODO: לבדוק אם יש כפילויות או שגיאות בשם משתמש וטלפון ולהוציא הודעה בהתאם לכל מצב
+                    Toast.makeText(requireContext(), "Error: one or more fields are incorrect", Toast.LENGTH_SHORT).show();
+
+                }
             }
         });
         return view;
@@ -113,6 +123,7 @@ public class RegisterFragment extends Fragment {
         if (!userName.isEmpty() && password.equals(confirmPassword) && validPhoneNumber(phoneNumber))
         {
             // להירשם לdatabase
+
 
             return true;
         }
