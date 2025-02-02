@@ -47,9 +47,7 @@
                 android:layout_height="40dp"
                 android:text="-"
                 android:backgroundTint="@color/black"
-                android:textColor="@color/white"
-                android:textSize="18sp"
-                android:padding="4dp" />
+                android:textColor="@color/white" />
 
             <TextView
                 android:id="@+id/textViewQuantity"
@@ -67,9 +65,7 @@
                 android:layout_height="40dp"
                 android:text="+"
                 android:backgroundTint="@color/black"
-                android:textColor="@color/white"
-                android:textSize="18sp"
-                android:padding="4dp" />
+                android:textColor="@color/white" />
         </LinearLayout>
 
         <!-- Add to Cart Button -->

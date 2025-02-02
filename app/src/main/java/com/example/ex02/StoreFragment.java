@@ -7,6 +7,8 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -59,6 +61,38 @@ public class StoreFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_store, container, false);
+        View view = inflater.inflate(R.layout.fragment_store, container, false);
+
+        TextView textBoxQuantity = view.findViewById(R.id.textViewQuantity);
+
+        String quantity = textBoxQuantity.getText().toString();
+
+        Button increaseButton = view.findViewById(R.id.btnIncrease);
+        Button decreaseButton = view.findViewById(R.id.btnDecrease);
+
+        int initialQuantity = textBoxQuantity.getText().toString().isEmpty() ? 0 : Integer.parseInt(textBoxQuantity.getText().toString());
+
+        // Use an array to make it mutable inside OnClickListener
+        final int[] currentQuantity = { initialQuantity };
+
+        increaseButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                currentQuantity[0]++; // Increase quantity
+                textBoxQuantity.setText(String.valueOf(currentQuantity[0])); // Update TextView
+            }
+        });
+
+        decreaseButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (currentQuantity[0] > 0) { // Prevent negative numbers
+                    currentQuantity[0]--;
+                    textBoxQuantity.setText(String.valueOf(currentQuantity[0]));
+                }
+            }
+        });
+
+        return view;
     }
 }
