@@ -14,7 +14,11 @@
             android:id="@+id/action_loginFragment_to_registerFragment"
             app:destination="@id/registerFragment"
             />
+        <action
+            android:id="@+id/action_loginFragment_to_storeFragment"
+            app:destination="@id/storeFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/registerFragment"
         android:name="com.example.ex02.RegisterFragment"
@@ -23,6 +27,13 @@
         <action
             android:id="@+id/action_registerFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/storeFragment"
+        android:name="com.example.ex02.StoreFragment"
+        android:label="fragment_store"
+        tools:layout="@layout/fragment_store" >
     </fragment>
 
 </navigation>
