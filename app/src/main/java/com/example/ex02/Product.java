@@ -40,7 +40,7 @@ public class Product {
         this.name = name;
     }
 
-    public String  getPrice() {
+    public String getPrice() {
         return price;
     }
 
@@ -63,5 +63,9 @@ public class Product {
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
+    public int getPriceInt() {
+        return Integer.parseInt(price);
+    }
+
 }
 

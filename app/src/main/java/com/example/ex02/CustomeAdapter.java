@@ -98,13 +98,12 @@ public class CustomeAdapter extends RecyclerView.Adapter<CustomeAdapter.MyViewHo
             @Override
             public void onClick(View v) {
                 int quantity = Integer.parseInt(holder.quantityText.getText().toString());
+                // הוספת המוצר לעגלה
+                ShoppingCart.addItem(product, quantity);
+
                 Toast.makeText(v.getContext(),
                         "Added " + quantity + " " + product.getName() + " to cart",
                         Toast.LENGTH_SHORT).show();
-
-                // Here you can add logic to actually add the item to a shopping cart
-                // For example:
-                // ShoppingCart.addItem(product, quantity);
             }
         });
     }

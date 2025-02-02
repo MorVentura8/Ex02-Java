@@ -34,6 +34,17 @@
         android:name="com.example.ex02.StoreFragment"
         android:label="fragment_store"
         tools:layout="@layout/fragment_store" >
+        <action
+            android:id="@+id/action_storeFragment_to_checkoutFragment"
+            app:destination="@id/checkoutFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/checkoutFragment"
+        android:name="com.example.ex02.CheckoutFragment"
+        android:label="CheckoutFragment" >
+        <action
+            android:id="@+id/action_checkoutFragment_to_storeFragment"
+            app:destination="@id/storeFragment" />
     </fragment>
 
 </navigation>

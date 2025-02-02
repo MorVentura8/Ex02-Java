@@ -72,9 +72,13 @@ public class LoginFragment extends Fragment {
                             for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                                 String dbPassword = snapshot.child("password").getValue(String.class);
                                 if (dbPassword != null && dbPassword.equals(password)) {
+                                    // שמירת המשתמש הנוכחי
+                                    Users currentUser = new Users(userName, password, snapshot.child("phoneNumber").getValue(String.class));
+                                    FirebaseAuthManager.setCurrentUser(currentUser);
+
                                     Toast.makeText(getActivity(), "Login successful!", Toast.LENGTH_SHORT).show();
                                     Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_storeFragment);
-                                    // Navigate to StoreFragment
+
 
                                 } else {
                                     Toast.makeText(getActivity(), "Incorrect password!", Toast.LENGTH_SHORT).show();

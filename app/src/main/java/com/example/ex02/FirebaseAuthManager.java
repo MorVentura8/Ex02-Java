@@ -8,11 +8,15 @@ import com.google.firebase.auth.AuthResult;
 import java.util.HashMap;
 
 public class FirebaseAuthManager {
-    private FirebaseAuth auth;
-    private FirebaseDatabase database;
+    private static String currentUsername;
+    private static Users currentUser;
 
-    public FirebaseAuthManager() {
-        auth = FirebaseAuth.getInstance();
-        database = FirebaseDatabase.getInstance();
+    public static void setCurrentUser(Users user) {
+        currentUser = user;
+        currentUsername = user.getUserName();
+    }
+
+    public static Users getCurrentUser() {
+        return currentUser;
     }
 }
