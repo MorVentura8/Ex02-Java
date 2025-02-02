@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cardViewShow"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     app:cardCornerRadius="10dp"
@@ -47,7 +48,9 @@
                 android:layout_height="40dp"
                 android:text="-"
                 android:backgroundTint="@color/black"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:padding="4dp" />
 
             <TextView
                 android:id="@+id/textViewQuantity"
@@ -65,8 +68,21 @@
                 android:layout_height="40dp"
                 android:text="+"
                 android:backgroundTint="@color/black"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:padding="4dp" />
         </LinearLayout>
+
+        <!-- Price -->
+        <TextView
+            android:id="@+id/textViewPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Price: 0.00 ILS"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_marginTop="4dp" />
 
         <!-- Add to Cart Button -->
         <Button

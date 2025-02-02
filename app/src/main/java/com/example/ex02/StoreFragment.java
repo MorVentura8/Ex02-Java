@@ -3,12 +3,18 @@ package com.example.ex02;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -25,6 +31,11 @@ public class StoreFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    private ArrayList<Product> dataset;
+    private RecyclerView recyclerView;
+    private LinearLayoutManager layoutManager;
+    private CustomeAdapter adapter;
 
     public StoreFragment() {
         // Required empty public constructor
@@ -63,35 +74,30 @@ public class StoreFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_store, container, false);
 
-        TextView textBoxQuantity = view.findViewById(R.id.textViewQuantity);
+        recyclerView = view.findViewById(R.id.recycleViewResult);
+        //layoutManager = new LinearLayoutManager(getContext());
+        GridLayoutManager layoutManager = new GridLayoutManager(getContext(), 2); // 2 columns
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+        //recyclerView.setLayoutManager(layoutManager);
+        //recyclerView.setItemAnimator(new DefaultItemAnimator());
 
-        String quantity = textBoxQuantity.getText().toString();
+        dataset = new ArrayList<Product>();
 
-        Button increaseButton = view.findViewById(R.id.btnIncrease);
-        Button decreaseButton = view.findViewById(R.id.btnDecrease);
 
-        int initialQuantity = textBoxQuantity.getText().toString().isEmpty() ? 0 : Integer.parseInt(textBoxQuantity.getText().toString());
+        for (int i = 0; i < MyData.nameProduct.length; i++) {
+            dataset.add(new Product(
+                    MyData.nameProduct[i],
+                    MyData.drawbleArray[i],
+                    MyData.priceArray[i],
+                    MyData.id_[i]
+            ));
+        }
 
-        // Use an array to make it mutable inside OnClickListener
-        final int[] currentQuantity = { initialQuantity };
+        adapter = new CustomeAdapter(dataset);
+        recyclerView.setAdapter(adapter);
 
-        increaseButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                currentQuantity[0]++; // Increase quantity
-                textBoxQuantity.setText(String.valueOf(currentQuantity[0])); // Update TextView
-            }
-        });
 
-        decreaseButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (currentQuantity[0] > 0) { // Prevent negative numbers
-                    currentQuantity[0]--;
-                    textBoxQuantity.setText(String.valueOf(currentQuantity[0]));
-                }
-            }
-        });
 
         return view;
     }

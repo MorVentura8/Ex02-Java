@@ -1,0 +1,122 @@
+package com.example.ex02;
+
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
+import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.ArrayList;
+
+public class CustomeAdapter extends RecyclerView.Adapter<CustomeAdapter.MyViewHolder> {
+
+    private ArrayList<Product> dataSet;
+
+    public CustomeAdapter(ArrayList<Product> dataSet) {
+        this.dataSet = dataSet;
+    }
+
+    public static class MyViewHolder extends RecyclerView.ViewHolder {
+        CardView cardView;
+        TextView productName;
+        TextView price;
+        ImageView imageView;
+        Button btnDecrease;
+        Button btnIncrease;
+        TextView quantityText;
+        Button btnAddToCart;
+
+        public MyViewHolder(@NonNull View itemView) {
+            super(itemView);
+            cardView = itemView.findViewById(R.id.cardViewShow);
+            productName = itemView.findViewById(R.id.textViewProductName);
+            price = itemView.findViewById(R.id.textViewPrice);
+            imageView = itemView.findViewById(R.id.imageViewProduct);
+            btnDecrease = itemView.findViewById(R.id.btnDecrease);
+            btnIncrease = itemView.findViewById(R.id.btnIncrease);
+            quantityText = itemView.findViewById(R.id.textViewQuantity);
+            btnAddToCart = itemView.findViewById(R.id.btnAddToCart);
+        }
+    }
+
+    @NonNull
+    @Override
+    public CustomeAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_view, parent, false);
+        return new MyViewHolder(view);
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull CustomeAdapter.MyViewHolder holder, int position) {
+        Product product = dataSet.get(position);
+
+        holder.productName.setText(product.getName());
+        holder.price.setText(product.getPrice() + " ₪");
+        holder.imageView.setImageResource(product.getImage());
+
+        // Set initial quantity
+        holder.quantityText.setText("1");
+
+        // Minus button listener
+        holder.btnDecrease.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int currentQuantity = Integer.parseInt(holder.quantityText.getText().toString());
+                if (currentQuantity > 1) {
+                    currentQuantity--;
+                    holder.quantityText.setText(String.valueOf(currentQuantity));
+                    updateTotalPrice(holder, product.getPrice(), currentQuantity);
+                }
+            }
+        });
+
+        // Plus button listener
+        holder.btnIncrease.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int currentQuantity = Integer.parseInt(holder.quantityText.getText().toString());
+                if (currentQuantity < 10) {  // Maximum 10 items
+                    currentQuantity++;
+                    holder.quantityText.setText(String.valueOf(currentQuantity));
+                    updateTotalPrice(holder, product.getPrice(), currentQuantity);
+                } else {
+                    Toast.makeText(v.getContext(),
+                            "Maximum quantity reached",
+                            Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        // Add to Cart button listener
+        holder.btnAddToCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int quantity = Integer.parseInt(holder.quantityText.getText().toString());
+                Toast.makeText(v.getContext(),
+                        "Added " + quantity + " " + product.getName() + " to cart",
+                        Toast.LENGTH_SHORT).show();
+
+                // Here you can add logic to actually add the item to a shopping cart
+                // For example:
+                // ShoppingCart.addItem(product, quantity);
+            }
+        });
+    }
+
+    @Override
+    public int getItemCount() {
+        return dataSet.size();
+    }
+
+    // Helper method to update the total price
+    private void updateTotalPrice(MyViewHolder holder, String basePrice, int quantity) {
+        int totalPrice = Integer.parseInt(basePrice) * quantity;
+        holder.price.setText(totalPrice + " ₪");
+    }
+}
