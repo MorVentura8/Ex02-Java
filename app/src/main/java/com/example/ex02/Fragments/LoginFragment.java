@@ -1,4 +1,4 @@
-package com.example.ex02;
+package com.example.ex02.Fragments;
 
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -13,6 +13,9 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
+import com.example.ex02.Classes.FirebaseAuthManager;
+import com.example.ex02.Classes.Users;
+import com.example.ex02.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -31,21 +34,14 @@ public class LoginFragment extends Fragment {
 
         // Firebase Database Reference
         databaseReference = FirebaseDatabase.getInstance().getReference("Users");
-
-        // Find Views
         etUsername = view.findViewById(R.id.et_username);
         etPassword = view.findViewById(R.id.et_password);
         btnLogin = view.findViewById(R.id.btn_login);
         btnRegister = view.findViewById(R.id.btn_register);
-
-        // Handle Login Button Click
         btnLogin.setOnClickListener(v -> loginUser(view));
-
-        // Navigate to Register Fragment
         btnRegister.setOnClickListener(v ->
                 Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_registerFragment)
         );
-
         return view;
     }
 

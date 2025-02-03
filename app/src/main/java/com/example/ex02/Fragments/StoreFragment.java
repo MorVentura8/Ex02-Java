@@ -1,4 +1,4 @@
-package com.example.ex02;
+package com.example.ex02.Fragments;
 
 import android.os.Bundle;
 
@@ -13,8 +13,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.ex02.Classes.MyData;
+import com.example.ex02.Classes.Product;
+import com.example.ex02.Classes.ShoppingCart;
+import com.example.ex02.R;
 
 import java.util.ArrayList;
 

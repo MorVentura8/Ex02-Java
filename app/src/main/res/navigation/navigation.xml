@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.example.ex02.LoginFragment"
+        android:name="com.example.ex02.Fragments.LoginFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" >
         <action
@@ -21,7 +21,7 @@
 
     <fragment
         android:id="@+id/registerFragment"
-        android:name="com.example.ex02.RegisterFragment"
+        android:name="com.example.ex02.Fragments.RegisterFragment"
         android:label="fragment_register"
         tools:layout="@layout/fragment_register" >
         <action
@@ -31,7 +31,7 @@
 
     <fragment
         android:id="@+id/storeFragment"
-        android:name="com.example.ex02.StoreFragment"
+        android:name="com.example.ex02.Fragments.StoreFragment"
         android:label="fragment_store"
         tools:layout="@layout/fragment_store" >
         <action
@@ -40,7 +40,7 @@
     </fragment>
     <fragment
         android:id="@+id/checkoutFragment"
-        android:name="com.example.ex02.CheckoutFragment"
+        android:name="com.example.ex02.Fragments.CheckoutFragment"
         android:label="CheckoutFragment" >
         <action
             android:id="@+id/action_checkoutFragment_to_storeFragment"

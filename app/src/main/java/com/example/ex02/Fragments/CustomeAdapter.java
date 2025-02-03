@@ -1,4 +1,4 @@
-package com.example.ex02;
+package com.example.ex02.Fragments;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +11,10 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.ex02.Classes.Product;
+import com.example.ex02.Classes.ShoppingCart;
+import com.example.ex02.R;
 
 import java.util.ArrayList;
 
@@ -60,10 +64,8 @@ public class CustomeAdapter extends RecyclerView.Adapter<CustomeAdapter.MyViewHo
         holder.price.setText(product.getPrice() + " ₪");
         holder.imageView.setImageResource(product.getImage());
 
-        // Set initial quantity
         holder.quantityText.setText("1");
 
-        // Minus button listener
         holder.btnDecrease.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -93,7 +95,6 @@ public class CustomeAdapter extends RecyclerView.Adapter<CustomeAdapter.MyViewHo
             }
         });
 
-        // Add to Cart button listener
         holder.btnAddToCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -112,8 +113,6 @@ public class CustomeAdapter extends RecyclerView.Adapter<CustomeAdapter.MyViewHo
     public int getItemCount() {
         return dataSet.size();
     }
-
-    // Helper method to update the total price
     private void updateTotalPrice(MyViewHolder holder, String basePrice, int quantity) {
         int totalPrice = Integer.parseInt(basePrice) * quantity;
         holder.price.setText(totalPrice + " ₪");

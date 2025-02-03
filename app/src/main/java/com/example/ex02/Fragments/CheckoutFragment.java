@@ -1,4 +1,4 @@
-package com.example.ex02;
+package com.example.ex02.Fragments;
 
 import android.os.Bundle;
 
@@ -12,6 +12,11 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.ex02.Classes.CartItem;
+import com.example.ex02.Classes.FirebaseAuthManager;
+import com.example.ex02.Classes.ShoppingCart;
+import com.example.ex02.Classes.Users;
+import com.example.ex02.R;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -62,7 +67,7 @@ public class CheckoutFragment extends Fragment {
     private void displayUserDetails() {
         Users currentUser = FirebaseAuthManager.getCurrentUser();
         if (currentUser != null) {
-            String userDetails = "Shipping Details:\n" +
+            String userDetails = "User Details:\n" +
                     "Username: " + currentUser.getUserName() + "\n" +
                     "Phone: " + currentUser.getPhoneNumber();
             userDetailsText.setText(userDetails);

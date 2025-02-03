@@ -1,4 +1,6 @@
-package com.example.ex02;
+package com.example.ex02.Classes;
+
+import com.example.ex02.R;
 
 public class MyData {
 

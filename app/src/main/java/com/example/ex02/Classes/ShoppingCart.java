@@ -1,4 +1,4 @@
-package com.example.ex02;
+package com.example.ex02.Classes;
 
 import java.util.ArrayList;
 
