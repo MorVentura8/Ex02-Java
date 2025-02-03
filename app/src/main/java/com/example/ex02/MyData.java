@@ -6,7 +6,9 @@ public class MyData {
             "Xbox", "Xbox Controller","Gaming computer", "FC 25",
             "Call Of Duty Black Ops 6", "Spider-Man 2"};
 
-    public static Integer[] drawbleArray = {R.drawable.loginphoto,R.drawable.loginphoto,R.drawable.loginphoto,R.drawable.loginphoto,R.drawable.loginphoto,R.drawable.loginphoto,R.drawable.loginphoto,R.drawable.loginphoto};
+    public static Integer[] drawbleArray = {R.drawable.ps5_photo,R.drawable.dualshock_photo,R.drawable.xbox_photo
+            ,R.drawable.xbox_controller,R.drawable.gaming_pc_photo
+            ,R.drawable.fc25_photo,R.drawable.cod_bo6_photo,R.drawable.spider_man_2_photo};
 
     public static String[] priceArray = { "1600" ,"300" , "1600","300","7000","250","250","199" };
 
